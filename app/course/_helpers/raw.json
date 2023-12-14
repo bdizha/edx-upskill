@@ -1,0 +1,9 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.edx.org/learn/computer-science/massachusetts-institute-of-technology-introduction-to-computer-science-and-programming-using-python",
+    "name": "MITx: Introduction to Computer Science and Programming Using Python",
+    "alternateName": "edX Online"
+  }
+]
