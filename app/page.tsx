@@ -1,5 +1,5 @@
-import CourseList from "./course/_components/course-list";
-import CourseMockData from "./course/_helpers/courseMockData";
+import CourseList from "./course/components/course-list";
+import CourseMockData from "./course/helpers/courseMockData";
 
 console.log("CourseMockData", CourseMockData);
 export default function Page() {

@@ -1,6 +1,6 @@
 // @ts-ignore
 import { Container, Row, Col } from "@edx/paragon";
-import Course from "../../_types/course";
+import Course from "../../types/course";
 
 export interface  CourseCurriculumProps {
     course: Course;

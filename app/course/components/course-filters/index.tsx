@@ -8,10 +8,10 @@ import {
   Col,
   Form,
   Button,
-  useCheckboxSetValues,
+  Collapsible
 } from "@edx/paragon";
-import courseMockFilters from "../../_helpers/courseMockFilters";
-import {SelectedFilters} from "../../_types/courseFilter";
+import courseMockFilters from "../../helpers/courseMockFilters";
+import ShowMore from "./showMore";
 
 interface ShowAllFilters {
   [key: string]: boolean;
@@ -118,18 +118,18 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
                     ))}
                   </Col>
                   {filterCategory.filters.length > maxVisibleFilters && (
-                    <Col xl={12} className="text-right">
+                    <Col xl={12}>
                       {showAllFilters[filterCategory.key] ? (
                         <Button
-                          variant="secondary"
-                          onClick={() => handleShowLess(courseFilter.key)}
+                          variant="outline-primary"
+                          onClick={() => handleShowLess(filterCategory.key)}
                         >
                           Show Less
                         </Button>
-                      ) : (
+                      ) : ( 
                         <Button
-                          variant="secondary"
-                          onClick={() => handleShowMore(courseFilter.key)}
+                          variant="outline-primary"
+                          onClick={() => handleShowMore(filterCategory.key)}
                         >
                           Show More
                         </Button>
@@ -141,6 +141,7 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
             );
           })}
         </Row>
+        <ShowMore></ShowMore>
       </div>
     </>
   );

@@ -4,9 +4,9 @@ import React, { useState } from "react";
 // @ts-ignore
 import { Container, Row, Col, Form } from "@edx/paragon";
 import CourseCard from "../course-card";
-import courseMockData from "../../_helpers/courseMockData";
+import courseMockData from "../../helpers/courseMockData";
 import CourseFilters from "../course-filters";
-import {SelectedFilters} from "../../_types/courseFilter";
+import {SelectedFilters} from "../../types/courseFilter";
 
 interface CourseFiltersProps {
   [key: string]: string;
