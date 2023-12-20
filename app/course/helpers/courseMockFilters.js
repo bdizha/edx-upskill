@@ -36,7 +36,6 @@ const courseMockFilters = [
       label: "Skill",
       key: "skill",
       filters: [
-        "submit search",
         "Algebra",
         "Algorithm Design",
         "Algorithms",

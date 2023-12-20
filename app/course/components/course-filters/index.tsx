@@ -8,10 +8,22 @@ import {
   Col,
   Form,
   Button,
-  Collapsible
+  Collapsible,
 } from "@edx/paragon";
 import courseMockFilters from "../../helpers/courseMockFilters";
-import ShowMore from "./showMore";
+import ShowMoreFilters from "./showMoreFilters";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import {
+  courseFiltersState,
+  selectedFiltersState,
+} from "../../../recoil/atoms/courseFilters";
+import courseMockData from "../../helpers/courseMockData";
 
 interface ShowAllFilters {
   [key: string]: boolean;
@@ -22,7 +34,12 @@ interface CourseFiltersProps {
 }
 
 const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
-  const [selectedFilters, setSelectedFilters] = useState<any>({});
+  const [showModal, setShowModal] = useState(false);
+  const [filterCategory, setFilterCategory] = useState("");
+
+  const [courseFilters, setCourseFilters] = useRecoilState(courseFiltersState);
+  const [selectedFilters, setSelectedFilters] =
+    useRecoilState(selectedFiltersState);
   const [showAllFilters, setShowAllFilters] = useState<ShowAllFilters>({});
   const maxVisibleFilters = 4;
 
@@ -62,25 +79,17 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
     console.log("filterValues :: selectedFilters", selectedFilters);
   };
 
-  const handleShowMore = (key: string) => {
-    setShowAllFilters((prevShowAllFilters) => ({
-      ...prevShowAllFilters,
-      [key]: true,
-    }));
-
-    console.log("showAllFilters", showAllFilters);
-  };
-
-  const handleShowLess = (key: string) => {
-    setShowAllFilters((prevShowAllFilters) => ({
-      ...prevShowAllFilters,
-      [key]: false,
-    }));
+  const handleShowMore = (categoryKey: string) => {
+    setFilterCategory(categoryKey);
+    setShowModal(true);
 
     console.log("showAllFilters", showAllFilters);
   };
 
   useEffect(() => {
+    // @ts-ignore
+    setCourseFilters(courseMockFilters);
+
     // Read filters from localStorage on page load
     const savedFilters = localStorage.getItem("selectedFilters");
     if (savedFilters) {
@@ -90,16 +99,15 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
   }, []);
 
   return (
-    <>
+    <RecoilRoot>
       <h3 className="mb-4">Filters</h3>
       <div className="course-filters">
         <Row>
-          {courseMockFilters.map((filterCategory, index) => {
+          {courseFilters.map((filterCategory, index) => {
             const visibleFilters = filterCategory.filters.slice(
               0,
               showAllFilters[filterCategory.key] ? undefined : maxVisibleFilters
             );
-
             return (
               <Col xl={12} key={index}>
                 <h4>{filterCategory.label}</h4>
@@ -119,21 +127,13 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
                   </Col>
                   {filterCategory.filters.length > maxVisibleFilters && (
                     <Col xl={12}>
-                      {showAllFilters[filterCategory.key] ? (
-                        <Button
-                          variant="outline-primary"
-                          onClick={() => handleShowLess(filterCategory.key)}
-                        >
-                          Show Less
-                        </Button>
-                      ) : ( 
-                        <Button
-                          variant="outline-primary"
-                          onClick={() => handleShowMore(filterCategory.key)}
-                        >
-                          Show More
-                        </Button>
-                      )}
+                      <Button
+                        className="mb-5"
+                        variant="outline-primary"
+                        onClick={() => handleShowMore(filterCategory.key)}
+                      >
+                        Show More
+                      </Button>
                     </Col>
                   )}
                 </Row>
@@ -141,9 +141,12 @@ const CourseFilters = ({ onFilterChange }: CourseFiltersProps) => {
             );
           })}
         </Row>
-        <ShowMore></ShowMore>
+        <ShowMoreFilters
+          showModal={showModal}
+          selectedCategory={filterCategory}
+        ></ShowMoreFilters>
       </div>
-    </>
+    </RecoilRoot>
   );
 };
 

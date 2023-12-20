@@ -9,6 +9,7 @@ import Course from "../types/course";
 import CourseSnapshot from "../components/course-snapshot";
 import CourseHeader from "../components/course-header";
 import CourseCurriculum from "../components/course-curriculum";
+import CourseRuns from "../components/course-runs";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const course: Course | any = courseMockData.find((course: Course | any) =>
@@ -25,6 +26,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     <>
       <CourseSnapshot course={course}></CourseSnapshot>
       <CourseCurriculum course={course}></CourseCurriculum>
+      <CourseRuns course={course}></CourseRuns>
     </>
   );
 };

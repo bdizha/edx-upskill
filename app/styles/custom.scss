@@ -19,3 +19,17 @@
     height: 48px;
     width: 48px;
 }
+
+.btn-outline-primary {
+    border-color: rgba(69, 69, 69, 0.6);
+}
+
+.collapsible-body {
+    .form-group:first-child {
+        margin-top: 16px;;
+    }
+}
+
+.padding-bottom {
+    padding-bottom: 320px;
+}
