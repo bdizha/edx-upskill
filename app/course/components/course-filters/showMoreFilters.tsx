@@ -10,50 +10,48 @@ import {
   Form,
 } from "@edx/paragon";
 import courseMockFilters from "../../helpers/courseMockFilters";
+import {
+  filterModalState,
+  filterShowModalState,
+} from "@/app/recoil/atoms/courseFilters";
+import { useRecoilState } from "recoil";
+import FilterCheckbox from "./FilterCheckbox";
 
 interface ShowMoreFiltersProps {
-  showModal: boolean;
   selectedCategory: string;
 }
 
-const ShowMoreFilters = ({
-  showModal,
-  selectedCategory,
-}: ShowMoreFiltersProps) => {
-  const [open, setOpen] = useState(false);
+const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
+  const [showModal, setShowModal] = useRecoilState(filterModalState);
 
-  const handleClose = () => {};
-
-  useEffect(() => {
-    setOpen(showModal);
-  }, [showModal, selectedCategory]);
-
-  const handleSelectFilter = () => {};
+  const handleClose = () => {
+    setShowModal(false);
+  };
 
   const showFilters = () =>
     courseMockFilters.map((filterCategory, index) => {
       return (
-        <Collapsible
-          title={filterCategory.label}
-          key={index}
-          defaultOpen={filterCategory.key == selectedCategory}
-        >
-          <Row>
-            <Col xl={12}>
-              {filterCategory.filters.map((filter, index) => (
-                <CheckBoxGroup key={index}>
-                  <Form.Checkbox
-                    name={filterCategory.key}
-                    value={filter.label}
-                    onChange={handleSelectFilter}
-                  >
-                    {filter.label}
-                  </Form.Checkbox>
-                </CheckBoxGroup>
-              ))}
-            </Col>
-          </Row>
-        </Collapsible>
+        <>
+          {selectedCategory && showModal && (
+            <Collapsible
+              title={filterCategory.label}
+              key={index}
+              defaultOpen={filterCategory.key === selectedCategory}
+            >
+              <Row>
+                <Col xl={12}>
+                  {filterCategory.filters.map((filter, index) => (
+                     <FilterCheckbox
+                     key={index}
+                     filterKey={filterCategory.key}
+                     filterValue={filter.label}
+                   ></FilterCheckbox>
+                  ))}
+                </Col>
+              </Row>
+            </Collapsible>
+          )}
+        </>
       );
     });
 
@@ -63,7 +61,7 @@ const ShowMoreFilters = ({
   return (
     <Modal
       size="md"
-      open={open}
+      open={showModal}
       title="All filters."
       body={showFilters()}
       onClose={handleClose}

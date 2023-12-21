@@ -1,7 +1,7 @@
 const courseMockFilters = [
   {
     label: "Learning type",
-    key: "learning_type",
+    key: "learningType",
     filters: [
       "Certificate",
       "Course",
@@ -105,9 +105,16 @@ const courseMockFilters = [
     },
   ];
 
+  const toCamelCase = (string) => {
+    return string.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
+      if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+      return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    });
+  }
+
   courseMockFilters.forEach((item) => {
     item.filters = item.filters.map((filter) => {
-      return { key: filter.toLowerCase().replace(/ /g, '_'), label: filter };
+      return { key: toCamelCase(filter), label: filter };
     });
   });
   
