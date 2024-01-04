@@ -4,11 +4,12 @@ import React, { useState } from "react";
 // @ts-ignore
 import { Container, Row, Col, Image, Icon } from "@edx/paragon";
 // @ts-ignore
-import courseMockData from "../_helpers/courseMockData";
-import Course from "../_types/course";
-import CourseSnapshot from "../_components/course-snapshot";
-import CourseHeader from "../_components/course-header";
-import CourseCurriculum from "../_components/course-curriculum";
+import courseMockData from "../helpers/courseMockData";
+import Course from "../types/course";
+import CourseSnapshot from "../components/course-snapshot";
+import CourseHeader from "../components/course-header";
+import CourseCurriculum from "../components/course-curriculum";
+import CourseRuns from "../components/course-runs";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const course: Course | any = courseMockData.find((course: Course | any) =>
@@ -25,6 +26,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     <>
       <CourseSnapshot course={course}></CourseSnapshot>
       <CourseCurriculum course={course}></CourseCurriculum>
+      <CourseRuns course={course}></CourseRuns>
     </>
   );
 };

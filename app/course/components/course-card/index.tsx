@@ -2,7 +2,7 @@ import React from "react";
 // @ts-ignore
 import { Card, Truncate } from "@edx/paragon";
 import Link from "next/link";
-import Course from "../../_types/course";
+import Course from "../../types/course";
 
 interface Props {
   course: Course;

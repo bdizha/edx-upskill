@@ -5,7 +5,7 @@ import { Timelapse, Person, Calendar } from "@edx/paragon/icons";
 
 // @ts-ignore
 import { Container, Row, Col, Icon, Image } from "@edx/paragon";
-import Course from "../../_types/course";
+import Course from "../../types/course";
 
 export interface  CourseHeaderProps {
     course: Course;

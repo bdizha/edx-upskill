@@ -12,7 +12,7 @@ let courseMockData = [
     productType: "Professional Certificate",
     summary: "Google Cloud Computing Foundations Cloud Computing Fundamentals Google Cloud Computing Foundations Cloud Computing Fundamentals",
     filters: {
-      learning_type: "Masters",
+      learningType: "Masters",
       availability: "Archived",
       program: "MicroBachelors",
       subject: "Physics",
@@ -33,7 +33,7 @@ let courseMockData = [
     uuid: "d2d6788b-1a6e-4b82-9d67-3bed9d35996c",
     summary: "Develop a road map to integrate AI into your organization",
     filters: {
-      learning_type: "Certificate",
+      learningType: "Certificate",
       availability: "Available now",
       program: "MicroMasters",
       subject: "Physics",
@@ -54,7 +54,7 @@ let courseMockData = [
     productSource: "2u",
     summary: "Bachelor of Arts, Psychology Bachelor of Arts, Psychology Bachelor of Arts, Psychology Bachelor of Arts, Psychology",
     filters: {
-      learning_type: "Executive Education",
+      learningType: "Executive Education",
       availability: "Upcoming",
       program: "Certificate",
       subject: "Biology & Life Sciences",
@@ -76,7 +76,7 @@ let courseMockData = [
     productSource: "2u",
     summary: "Data Science Boot Camp Data Science Boot Camp Data Science Boot Camp Data Science Boot Camp",
     filters: {
-      learning_type: "Course",
+      learningType: "Course",
       availability: "Archived",
       program: "MicroBachelors",
       subject: "Business & Management",
