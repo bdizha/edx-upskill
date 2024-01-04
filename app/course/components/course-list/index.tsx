@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Container, Row, Col, Form } from "@edx/paragon";
-import CourseCard from "./course-card";
-import courseMockData from "../helpers/courseMockData";
-import CourseFilters from "./course-filters";
+import CourseCard from "../course-card/index";
+import courseMockData from "../../helpers/courseMockData";
+import CourseFilters from "../course-filters";
 import { useRecoilValue } from "recoil";
 import { selectedFiltersState } from "@/app/recoil/atoms/courseFilters";
 

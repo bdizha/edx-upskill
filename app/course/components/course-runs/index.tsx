@@ -11,7 +11,7 @@ const courseRuns = [{}];
 
 const CourseRuns = ({ course }: CourseRunsProps) => {
   return (
-    <Container className="mt-12" size="md">
+    <Container className="mt-12" size="lg">
       <h2 className="h2">Course Runs</h2>
       <div className="row">
         <div className="col col-3">

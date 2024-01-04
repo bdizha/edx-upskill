@@ -80,7 +80,7 @@ const courseMockFilters = [
     },
     {
       label: "School & Partner",
-      key: "school_partner",
+      key: "schoolPartner",
       filters: [
         "Columbia University",
         "Cooper Union",
