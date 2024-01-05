@@ -1,0 +1,73 @@
+tr {
+  border-bottom: 1px solid #eae6e5;
+}
+th {
+  border-bottom: none;
+  max-width: 270px;
+  min-width: 100px;
+  padding: 24px 20px 24px 0;
+  position: static;
+  width: auto;
+}
+
+.comparison-header {
+  color: #000;
+  font-size: 0.875rem;
+  line-height: 20px;
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+.comparison-item {
+  font-size: 1.375rem;
+  line-height: 36px;
+}
+.td {
+  text-align: center;
+  color: #000;
+}
+.track-header {
+  height: 110px;
+  width: 220px;
+  margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.verified {
+  background-color: #f0cc00;
+}
+.audit {
+  background-color: #f2f0ef;
+}
+.comparison-item {
+  font-size: 1.375rem;
+  text-align: center;
+}
+.track-headers-row {
+  border: none;
+}
+
+td {
+  border-bottom: none;
+  max-width: 270px;
+  min-width: 100px;
+  padding: 24px 20px 24px 0;
+  position: static;
+  width: auto;
+}
+.check-icon svg {
+  background-color: #f2faf7;
+  border-radius: 50%;
+  color: #0c7145;
+  height: 30px;
+  width: 30px;
+}
+
+table.PerformanceTable {
+  table-layout: fixed;
+  width: 100%;
+}
+table.PerformanceTable td.PerformanceCell {
+  width: 100px;
+}

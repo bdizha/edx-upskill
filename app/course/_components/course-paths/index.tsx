@@ -13,6 +13,8 @@ import {
 // @ts-ignore
 import { Check } from "@edx/paragon/icons";
 
+import "./styles.scss";
+
 import React, { useState } from "react";
 
 const data = [
@@ -149,12 +151,268 @@ const CoursePaths = () => {
           {ExampleCompo()}
         </Col>
         <Col xs={12} sm={12} lg={8} xl={8}>
-          <Table
+          <div
+            style={{
+              display: "grid",
+              textAlign: "center",
+            }}
+          >
+            <table className="PerformanceTable">
+              <tr>
+                <th></th>
+                <th style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="track-header verified">
+                    <h3 className="heading">Verified Track</h3>
+                  </div>
+                </th>
+                <th>
+                  <div className="track-header audit">
+                    <h3 className="heading">Audit Track</h3>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">Price</h4>
+                </td>
+                <td>
+                  <p className="comparison-item">$75 USD</p>
+                </td>
+                <td>
+                  <p className="comparison-item">Free</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">
+                    Access to course materials
+                  </h4>
+                </td>
+                <td style={{ display: "flex", justifyContent: "center" }}>
+                  <p className="comparison-item">Unlimited</p>
+                  <span style={{ marginTop: "3px", marginLeft: "3px" }}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      role="img"
+                      focusable="false"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M11 7h2v2h-2V7Zm0 4h2v6h-2v-6Zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>{" "}
+                  </span>
+                </td>
+                <td>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <p className="comparison-item">Limited</p>
+                    <span style={{ marginTop: "3px", marginLeft: "3px" }}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        focusable="false"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M11 7h2v2h-2V7Zm0 4h2v6h-2v-6Zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>{" "}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">
+                    World class institutions and universities
+                  </h4>
+                </td>
+                <td
+                  className="check-icon"
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="yes"
+                  >
+                    <path
+                      d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </td>
+                <td>
+                  <div
+                    className="check-icon"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="yes"
+                    >
+                      <path
+                        d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">edX support</h4>
+                </td>
+                <td
+                  className="check-icon"
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="yes"
+                  >
+                    <path
+                      d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </td>
+                <td>
+                  <div
+                    className="check-icon"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="yes"
+                    >
+                      <path
+                        d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">
+                    Shareable certificate upon completion
+                  </h4>
+                </td>
+                <td
+                  className="check-icon"
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="yes"
+                  >
+                    <path
+                      d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </td>
+                <td>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <span>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        focusable="false"
+                        aria-label="no"
+                      >
+                        <path d="M19 13H5v-2h14v2Z" fill="currentColor"></path>
+                      </svg>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4 className="comparison-header">
+                    Graded assignments and exams
+                  </h4>
+                </td>
+                <td
+                  className="check-icon"
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="yes"
+                  >
+                    <path
+                      d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </td>
+                <td>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <span>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        focusable="false"
+                        aria-label="no"
+                      >
+                        <path d="M19 13H5v-2h14v2Z" fill="currentColor"></path>
+                      </svg>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          {/* <Table
             data={data}
             columns={columnsData}
             className="table-responsive"
             rowHeaderColumnKey="name"
-          />
+          /> */}
         </Col>
       </Row>
     </Container>
