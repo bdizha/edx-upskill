@@ -13,6 +13,11 @@ export const selectedFiltersState = atom<SelectedFilters>({
   default: {},
 });
 
+export const appliedFiltersState = atom<SelectedFilters>({
+  key: "appliedFiltersState",
+  default: {},
+});
+
 export const filterCategoryState = atom({
   key: "filterCategoryState",
   default: [],

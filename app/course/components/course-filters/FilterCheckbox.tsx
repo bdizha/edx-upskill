@@ -1,6 +1,9 @@
 // @ts-ignore
 import { CheckBoxGroup, Form } from "@edx/paragon";
-import { selectedFiltersState } from "@/app/recoil/atoms/courseFilters";
+import {
+  appliedFiltersState,
+  selectedFiltersState,
+} from "@/app/recoil/atoms/courseFilters";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { SelectedFilters } from "../../types/courseFilter";
@@ -8,28 +11,29 @@ import { SelectedFilters } from "../../types/courseFilter";
 interface FilterCheckboxProps {
   filterKey: string;
   filterValue: string;
+  isApplied: boolean;
 }
 
-const FilterCheckbox = ({ filterKey, filterValue }: FilterCheckboxProps) => {
+const FilterCheckbox = ({
+  filterKey,
+  filterValue,
+  isApplied,
+}: FilterCheckboxProps) => {
   const [selectedFilters, setSelectedFilters] =
     useRecoilState(selectedFiltersState);
 
-  console.log(
-    "filterValues :: filterKey :: " + filterKey + " :: " + filterValue,
-    selectedFilters[filterKey]?.includes(filterValue)
-  );
-  console.log(
-    "filterValues :: filterKey :: " + filterKey,
-    selectedFilters[filterKey]
-  );
+  const [appliedFilters, setAppliedFilters] =
+    useRecoilState(appliedFiltersState);
 
   const [isChecked, setIsChecked] = useState(
     selectedFilters[filterKey]?.includes(filterValue)
   );
 
   useEffect(() => {
-    setIsChecked(selectedFilters[filterKey]?.includes(filterValue));
-  }, [selectedFilters]);
+    const currentValues = isApplied ? appliedFilters : selectedFilters;
+
+    setIsChecked(currentValues[filterKey]?.includes(filterValue));
+  }, [selectedFilters, appliedFilters]);
 
   const handleChange = (event: {
     target: {
@@ -41,28 +45,33 @@ const FilterCheckbox = ({ filterKey, filterValue }: FilterCheckboxProps) => {
     const filterKey: string = event.target.name;
     const filterValue: string = event.target.value;
 
-    console.log("filterValues :: filterKey", filterKey);
-    console.log("filterValues :: filterValue", filterValue);
+    // console.log("filterValues :: filterKey", filterKey);
+    // console.log("filterValues :: filterValue", filterValue);
 
-    let filters: SelectedFilters = selectedFilters;
+    let filters: SelectedFilters = isApplied ? appliedFilters : selectedFilters;
 
     // set is checked local state
     setIsChecked(event.target.checked);
 
-    console.log("filterValues :: isChecked", isChecked);
-    console.log(
-      "filterValues :: isChecked :: target.checked",
-      event.target.checked
-    );
-
-    setSelectedFilters(() => ({
-      ...filters,
-      [filterKey]: event.target.checked // Check if this checkbox is checked
-        ? [...(filters[filterKey] || []), filterValue]
-        : (filters[filterKey] || []).filter(
-            (filter: string) => filter !== filterValue
-          ),
-    }));
+    if (isApplied) {
+      setAppliedFilters(() => ({
+        ...filters,
+        [filterKey]: event.target.checked // Check if this checkbox is checked
+          ? [...(filters[filterKey] || []), filterValue]
+          : (filters[filterKey] || []).filter(
+              (filter: string) => filter !== filterValue
+            ),
+      }));
+    } else {
+      setSelectedFilters(() => ({
+        ...filters,
+        [filterKey]: event.target.checked // Check if this checkbox is checked
+          ? [...(filters[filterKey] || []), filterValue]
+          : (filters[filterKey] || []).filter(
+              (filter: string) => filter !== filterValue
+            ),
+      }));
+    }
   };
 
   return (

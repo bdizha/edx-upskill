@@ -7,7 +7,7 @@ import CourseCard from "../course-card/index";
 import courseMockData from "../../helpers/courseMockData";
 import CourseFilters from "../course-filters";
 import { useRecoilValue } from "recoil";
-import { selectedFiltersState } from "@/app/recoil/atoms/courseFilters";
+import { appliedFiltersState } from "@/app/recoil/atoms/courseFilters";
 
 interface CourseFiltersProps {
   [key: string]: string;
@@ -15,7 +15,7 @@ interface CourseFiltersProps {
 
 const CourseList = () => {
   const [courses, setCourses] = useState(courseMockData);
-  const selectedFilters = useRecoilValue(selectedFiltersState);
+  const appliedFilters = useRecoilValue(appliedFiltersState);
 
   useEffect(() => {
     const filteredCourses = courseMockData.filter((course) => {
@@ -23,37 +23,37 @@ const CourseList = () => {
 
       const courseFilters: CourseFiltersProps = course.filters;
 
-      console.log("CourseList :: course", course.title);
-      console.log("CourseList :: courseFilters", courseFilters);
+      // console.log("CourseList :: course", course.title);
+      // console.log("CourseList :: courseFilters", courseFilters);
 
-      Object.keys(selectedFilters).forEach((filterKey) => {
-        console.log(
-          "CourseList :: selectedFilters[filterKey].length > 0",
-          selectedFilters[filterKey].length > 0
-        );
-        console.log(
-          "CourseList :: !selectedFilters[filterKey].includes(courseFilters[filterKey])",
-          !selectedFilters[filterKey].includes(courseFilters[filterKey])
-        );
+      Object.keys(appliedFilters).forEach((filterKey) => {
+        // console.log(
+        //   "CourseList :: appliedFilters[filterKey].length > 0",
+        //   appliedFilters[filterKey].length > 0
+        // );
+        // console.log(
+        //   "CourseList :: !appliedFilters[filterKey].includes(courseFilters[filterKey])",
+        //   !appliedFilters[filterKey].includes(courseFilters[filterKey])
+        // );
 
         if (
-          selectedFilters[filterKey].length > 0 &&
-          !selectedFilters[filterKey].includes(courseFilters[filterKey])
+          appliedFilters[filterKey].length > 0 &&
+          !appliedFilters[filterKey].includes(courseFilters[filterKey])
         ) {
           showCourse = false;
         }
       });
 
-      console.log("CourseList :: showCourse", showCourse);
+      // console.log("CourseList :: showCourse", showCourse);
 
       return showCourse;
     });
 
 
-    console.log("CourseList :: selectedFilters", selectedFilters);
+    console.log("CourseList :: appliedFilters", appliedFilters);
 
     setCourses(filteredCourses);
-  }, [selectedFilters]);
+  }, [appliedFilters]);
 
   return (
     <Container className="mt-6" size="xl">

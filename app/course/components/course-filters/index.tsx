@@ -7,11 +7,14 @@ import courseMockFilters from "../../helpers/courseMockFilters";
 import ShowMoreFilters from "./showMoreFilters";
 import {
   useRecoilState,
+  useRecoilValue,
   useSetRecoilState,
 } from "recoil";
 import {
+  appliedFiltersState,
   courseFiltersState,
   filterModalState,
+  selectedFiltersState,
 } from "../../../recoil/atoms/courseFilters";
 import FilterCheckbox from "./FilterCheckbox";
 
@@ -24,15 +27,20 @@ interface CourseFiltersProps {}
 
 const CourseFilters = ({}: CourseFiltersProps) => {
   const setShowModal = useSetRecoilState(filterModalState);
+  const appliedFilters = useRecoilValue(appliedFiltersState);
+  const setSelectedFilters = useSetRecoilState(selectedFiltersState);
   const [filterCategory, setFilterCategory] = useState("");
   const [courseFilters, setCourseFilters] = useRecoilState(courseFiltersState);
   const [showAllFilters, setShowAllFilters] = useState<ShowAllFilters>({});
 
   const handleShowMore = (categoryKey: string) => {
+
+    // set the selected filters to the already applied ones
+    setSelectedFilters(appliedFilters);
+
+    // set filter category
     setFilterCategory(categoryKey);
     setShowModal(true);
-
-    console.log("showAllFilters", showAllFilters);
   };
 
   useEffect(() => {
@@ -67,6 +75,7 @@ const CourseFilters = ({}: CourseFiltersProps) => {
                         key={index}
                         filterKey={filterCategory.key}
                         filterValue={filter.label}
+                        isApplied={true}
                       ></FilterCheckbox>
                     ))}
                   </Col>
