@@ -47,6 +47,18 @@ th {
 .track-headers-row {
   border: none;
 }
+.skeleton {
+  display: flex;
+  justify-content: center;
+}
+.faq {
+  font-size: 0.875rem;
+  margin-top: 5px;
+  a {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+}
 
 td {
   border-bottom: none;

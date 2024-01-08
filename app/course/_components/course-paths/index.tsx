@@ -17,90 +17,6 @@ import "./styles.scss";
 
 import React, { useState } from "react";
 
-const data = [
-  {
-    name: "",
-    paid: (
-      <Button
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "#f0cc00",
-        }}
-      >
-        <h5 style={{ color: "black" }}>Verified Track</h5>
-      </Button>
-    ),
-    free: (
-      <Button
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "#f2f0ef",
-        }}
-      >
-        <h5 style={{ color: "black" }}>Audit Track</h5>
-      </Button>
-    ),
-  },
-  {
-    name: "Price",
-    paid: "$75 USD",
-    free: "Free",
-  },
-  {
-    name: "Access to course materials",
-    paid: "Unlimited",
-    free: "Limited",
-  },
-  {
-    name: "World class institutions and universities",
-    paid: <Icon src={Check} color="green" />,
-    free: "Limited",
-  },
-  {
-    name: "edx support",
-    paid: <Icon src={Check} color="green" />,
-    free: "Limited",
-  },
-  {
-    name: "Shareable certificate upon completion",
-    paid: <Icon src={Check} color="green" />,
-    free: "-",
-  },
-  {
-    name: "Graded assignments and exams",
-    paid: <Icon src={Check} color="green" isValid />,
-    free: "-",
-  },
-];
-
-const columnsData = [
-  {
-    label: <h1>test</h1>,
-    key: "name",
-    columnSortable: true,
-    onSort: () => {},
-    hideHeader: true,
-    width: "col-3",
-  },
-  {
-    label: "",
-    key: "paid",
-    columnSortable: false,
-    hideHeader: true,
-    onSort: () => {},
-    width: "col-6",
-  },
-  {
-    label: "",
-    key: "free",
-    columnSortable: false,
-    hideHeader: true,
-    onSort: () => {},
-    width: "col-3",
-  },
-];
 const CoursePaths = () => {
   const { height, width } = useWindowSize();
   const WaysContents = () => {
@@ -115,7 +31,7 @@ const CoursePaths = () => {
       </>
     );
   };
-  const ExampleCompo = () => {
+  const WaysContentsContainer = () => {
     if (width < 992) {
       return (
         <Container className="mt-12" size="md">
@@ -148,7 +64,7 @@ const CoursePaths = () => {
     <Container className="pb-8" size="lg" style={{ paddingBottom: "50px" }}>
       <Row className="my-1">
         <Col xs={12} sm={12} lg={4} xl={4}>
-          {ExampleCompo()}
+          {WaysContentsContainer()}
         </Col>
         <Col xs={12} sm={12} lg={8} xl={8}>
           <div
@@ -160,7 +76,7 @@ const CoursePaths = () => {
             <table className="PerformanceTable">
               <tr>
                 <th></th>
-                <th style={{ display: "flex", justifyContent: "center" }}>
+                <th className="skeleton">
                   <div className="track-header verified">
                     <h3 className="heading">Verified Track</h3>
                   </div>
@@ -188,7 +104,7 @@ const CoursePaths = () => {
                     Access to course materials
                   </h4>
                 </td>
-                <td style={{ display: "flex", justifyContent: "center" }}>
+                <td className="skeleton">
                   <p className="comparison-item">Unlimited</p>
                   <span style={{ marginTop: "3px", marginLeft: "3px" }}>
                     <svg
@@ -209,7 +125,7 @@ const CoursePaths = () => {
                   </span>
                 </td>
                 <td>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="skeleton">
                     <p className="comparison-item">Limited</p>
                     <span style={{ marginTop: "3px", marginLeft: "3px" }}>
                       <svg
@@ -237,10 +153,7 @@ const CoursePaths = () => {
                     World class institutions and universities
                   </h4>
                 </td>
-                <td
-                  className="check-icon"
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
+                <td className="check-icon skeleton">
                   <svg
                     width="24"
                     height="24"
@@ -344,7 +257,7 @@ const CoursePaths = () => {
                   </svg>
                 </td>
                 <td>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="skeleton">
                     <span>
                       <svg
                         width="24"
@@ -362,7 +275,7 @@ const CoursePaths = () => {
                   </div>
                 </td>
               </tr>
-              <tr>
+              <tr className="track-headers-row">
                 <td>
                   <h4 className="comparison-header">
                     Graded assignments and exams
@@ -387,7 +300,7 @@ const CoursePaths = () => {
                   </svg>
                 </td>
                 <td>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="skeleton">
                     <span>
                       <svg
                         width="24"
@@ -406,13 +319,33 @@ const CoursePaths = () => {
                 </td>
               </tr>
             </table>
+            <div className="faq">
+              <a
+                className="inline-link muted-link"
+                href="https://support.edx.org/hc/en-us/sections/360002747833-About-Audit-and-Verified-Courses"
+              >
+                Read our FAQs
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mt-n1 ml-1"
+                  role="img"
+                  aria-label=""
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    d="M19 19H5V5h7V3H3v18h18v-9h-2v7ZM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+              in a new tab about frequently asked questions on these tracks.
+            </div>
           </div>
-          {/* <Table
-            data={data}
-            columns={columnsData}
-            className="table-responsive"
-            rowHeaderColumnKey="name"
-          /> */}
         </Col>
       </Row>
     </Container>
