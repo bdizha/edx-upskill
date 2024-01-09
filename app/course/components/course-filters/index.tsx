@@ -16,7 +16,7 @@ import {
   filterModalState,
   selectedFiltersState,
 } from "../../../recoil/atoms/courseFilters";
-import FilterCheckbox from "./FilterCheckbox";
+import FilterCheckbox from "./filterCheckbox";
 
 interface ShowAllFilters {
   [key: string]: boolean;
