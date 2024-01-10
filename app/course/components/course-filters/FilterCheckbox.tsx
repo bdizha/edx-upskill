@@ -6,7 +6,7 @@ import {
 } from "@/app/recoil/atoms/courseFilters";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { SelectedFilters } from "../../types/courseFilter";
+import { SelectedFilters } from "../../../types/courseFilter";
 
 interface FilterCheckboxProps {
   filterKey: string;

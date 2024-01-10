@@ -1,4 +1,4 @@
-interface CourseRun {
+export interface CourseRun {
   date?: string;
 }
 
@@ -7,7 +7,7 @@ export interface CourseFilter {
   label: string;
 }
 
-interface Course {
+export interface Course {
   shouldfirePreQuerySegmentEvent: string;
   uuid: string;
   title: string;
@@ -21,5 +21,3 @@ interface Course {
   summary?: string;
   courseRuns: CourseRun[];
 }
-
-export default Course;

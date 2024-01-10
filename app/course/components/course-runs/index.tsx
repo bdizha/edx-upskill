@@ -1,5 +1,5 @@
 import React from "react";
-import Course from "../../types/course";
+import Course from "../../../types/course";
 // @ts-ignore
 import { Container, Row, Col, Card, Button } from "@edx/paragon";
 

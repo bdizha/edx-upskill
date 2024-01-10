@@ -10,7 +10,7 @@ import {
 } from "@/app/recoil/atoms/courseFilters";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import FilterCheckbox from "./filterCheckbox";
-import { SelectedFilters } from "@/app/course/types/courseFilter";
+import { SelectedFilters } from "@/app/types/courseFilter";
 
 interface ShowMoreFiltersProps {
   selectedCategory: string;

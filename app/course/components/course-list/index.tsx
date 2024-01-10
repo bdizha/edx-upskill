@@ -4,21 +4,28 @@ import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Container, Row, Col, Form } from "@edx/paragon";
 import CourseCard from "../course-card/index";
-import courseMockData from "../../helpers/courseMockData";
 import CourseFilters from "../course-filters";
 import { useRecoilValue } from "recoil";
 import { appliedFiltersState } from "@/app/recoil/atoms/courseFilters";
+import { Course } from "@/app/types/course";
 
 interface CourseFiltersProps {
   [key: string]: string;
 }
 
-const CourseList = () => {
-  const [courses, setCourses] = useState(courseMockData);
+interface CoursesProps {
+  courses: Course[]
+}
+
+const CourseList = ({courses}: CoursesProps) => {
+
+  console.log("course data :: ", courses);
+
+  const [courseList, setCourseList] = useState(courses);
   const appliedFilters = useRecoilValue(appliedFiltersState);
 
   useEffect(() => {
-    const filteredCourses = courseMockData.filter((course) => {
+    const filteredCourses = courseList?.filter((course) => {
       let showCourse = true;
 
       const courseFilters: CourseFiltersProps = course.filters;
@@ -37,8 +44,8 @@ const CourseList = () => {
         // );
 
         if (
-          appliedFilters[filterKey].length > 0 &&
-          !appliedFilters[filterKey].includes(courseFilters[filterKey])
+          appliedFilters[filterKey]?.length > 0 &&
+          !appliedFilters[filterKey]?.includes(courseFilters[filterKey])
         ) {
           showCourse = false;
         }
@@ -52,7 +59,7 @@ const CourseList = () => {
 
     console.log("CourseList :: appliedFilters", appliedFilters);
 
-    setCourses(filteredCourses);
+    setCourseList(filteredCourses);
   }, [appliedFilters]);
 
   return (
@@ -65,7 +72,7 @@ const CourseList = () => {
           <Container className="course-list">
             <h2 className="mb-4">All courses</h2>
             <Row>
-              {courses.map((course, index) => (
+              {courseList?.length > 0 && courseList.map((course, index) => (
                 <Col xs={12} sm={6} md={4} key={index}>
                   <CourseCard course={course} uuid={course.uuid}></CourseCard>
                 </Col>

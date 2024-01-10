@@ -35,7 +35,7 @@ const CourseFilters = ({}: CourseFiltersProps) => {
 
   const handleShowMore = (categoryKey: string) => {
 
-    // set the selected filters to the already applied ones
+    // set the selected filters to the applied ones
     setSelectedFilters(appliedFilters);
 
     // set filter category
