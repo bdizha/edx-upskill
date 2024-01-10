@@ -2,16 +2,11 @@
 
 import { RecoilRoot } from "recoil";
 import CourseList from "./course-list";
-import { Course } from "@/app/types/course";
 
-interface CoursesProps {
-  courses: Course[]
-}
-
-const Courses = ({courses}: CoursesProps) => {
+const Courses = () => {
     return (
       <RecoilRoot>
-        <CourseList courses={courses}></CourseList>
+        <CourseList></CourseList>
       </RecoilRoot>
     )
 }

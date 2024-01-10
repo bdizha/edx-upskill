@@ -8,21 +8,18 @@ import CourseFilters from "../course-filters";
 import { useRecoilValue } from "recoil";
 import { appliedFiltersState } from "@/app/recoil/atoms/courseFilters";
 import { Course } from "@/app/types/course";
+import courses from "@/app/api/courses.json"
 
 interface CourseFiltersProps {
   [key: string]: string;
 }
 
-interface CoursesProps {
-  courses: Course[]
-}
-
-const CourseList = ({courses}: CoursesProps) => {
-
-  console.log("course data :: ", courses);
-
+const CourseList = () => {
   const [courseList, setCourseList] = useState(courses);
   const appliedFilters = useRecoilValue(appliedFiltersState);
+
+
+  console.log("CourseList :: courseList", courseList);
 
   useEffect(() => {
     const filteredCourses = courseList?.filter((course) => {
