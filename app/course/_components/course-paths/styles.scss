@@ -1,0 +1,102 @@
+tr {
+  border-bottom: 1px solid #eae6e5;
+}
+th {
+  border-bottom: none;
+  max-width: 270px;
+  min-width: 100px;
+  padding: 24px 20px 24px 0;
+  position: static;
+  width: auto;
+}
+
+.comparison-header {
+  color: #000;
+  font-size: 0.875rem;
+  line-height: 20px;
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+.dark-text-color {
+  color: #000;
+}
+.comparison-item {
+  font-size: 1.375rem;
+  line-height: 36px;
+}
+.td {
+  text-align: center;
+  color: #000;
+}
+.track-header {
+  height: 110px;
+  width: 220px;
+  margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.verified {
+  background-color: #f0cc00;
+}
+.audit {
+  background-color: #f2f0ef;
+}
+.comparison-item {
+  font-size: 1.375rem;
+  text-align: center;
+}
+.track-headers-row {
+  border: none;
+}
+.skeleton {
+  display: flex;
+  justify-content: center;
+}
+.faq {
+  font-size: 0.875rem;
+  margin-top: 5px;
+  a {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+}
+
+td {
+  border-bottom: none;
+  max-width: 270px;
+  min-width: 100px;
+  padding: 24px 20px 24px 0;
+  position: static;
+  width: auto;
+}
+.check-icon svg {
+  background-color: #f2faf7;
+  border-radius: 50%;
+  color: #0c7145;
+  height: 30px;
+  width: 30px;
+}
+
+table.PerformanceTable {
+  table-layout: fixed;
+  width: 100%;
+}
+table.PerformanceTable td.PerformanceCell {
+  width: 100px;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+.polygon-container {
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 74% 100%, 0% 100%);
+  background-color: #f2f0ef;
+}
+.table-grid {
+  display: grid;
+  text-align: center;
+}
