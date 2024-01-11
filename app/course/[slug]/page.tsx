@@ -25,8 +25,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <CourseSnapshot course={course}></CourseSnapshot>
-      <CourseCurriculum course={course}></CourseCurriculum>
       <CourseRuns course={course}></CourseRuns>
+      <CourseCurriculum course={course}></CourseCurriculum>
     </>
   );
 };
