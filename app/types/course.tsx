@@ -7,6 +7,18 @@ export interface CourseFilter {
   label: string;
 }
 
+/*
+ "learning_type",
+      "availability",
+      "subject",
+      "skills",
+      "level",
+      "language",
+      "product",
+      "program_type",
+      "partner",
+*/
+
 export interface Course {
   title: string;
   partner: string[];

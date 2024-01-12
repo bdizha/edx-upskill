@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "@edx/paragon";
-import Course from "../../_types/course";
+import {Course} from "@/app/types/course";
 import InstructorCard from "./instructorCard";
 
 export interface CourseInstructorsProps {
