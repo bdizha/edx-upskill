@@ -29,19 +29,22 @@ const CourseList = () => {
       let showCourse = true;
 
       Object.keys(appliedFilters).forEach((filterKey) => {
-        // console.log(
-        //   "CourseList :: appliedFilters[filterKey].length > 0",
-        //   appliedFilters[filterKey].length > 0
-        // );
-        // console.log(
-        //   "CourseList :: !appliedFilters[filterKey].includes(courseFilters[filterKey])",
-        //   !appliedFilters[filterKey].includes(courseFilters[filterKey])
-        // );
+        // @ts-ignore
+        const courseFilters: [] = course[filterKey];
+
+        console.log(
+          "CourseList :: course[filterKey]",
+          // @ts-ignore
+          course[filterKey]
+        );
 
         if (
           appliedFilters[filterKey]?.length > 0 &&
-          // @ts-ignore
-          course[filterKey].containers(filterKey)
+          courseFilters.length > 0 &&
+          !appliedFilters[filterKey].some((filter) =>
+            // @ts-ignore
+            courseFilters.includes(filter)
+          )
         ) {
           showCourse = false;
         }

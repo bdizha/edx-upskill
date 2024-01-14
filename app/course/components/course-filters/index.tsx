@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Row, Col, Button } from "@edx/paragon";
-import courseMockFilters from "../../helpers/courseMockFilters";
+import courseMockFilters from "@/app/helpers/courseMockFilters";
 import ShowMoreFilters from "./showMoreFilters";
 import {
   useRecoilState,
@@ -15,7 +15,7 @@ import {
   courseFiltersState,
   filterModalState,
   selectedFiltersState,
-} from "../../../recoil/atoms/courseFilters";
+} from "@/app/recoil/atoms/courseFilters";
 import FilterCheckbox from "./filterCheckbox";
 
 interface ShowAllFilters {
@@ -74,7 +74,7 @@ const CourseFilters = ({}: CourseFiltersProps) => {
                       <FilterCheckbox
                         key={index}
                         filterKey={filterCategory.key}
-                        filterValue={filter.label}
+                        filterValue={filter}
                         isApplied={true}
                       ></FilterCheckbox>
                     ))}

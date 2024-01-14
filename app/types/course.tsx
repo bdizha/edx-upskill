@@ -7,17 +7,11 @@ export interface CourseFilter {
   label: string;
 }
 
-/*
- "learning_type",
-      "availability",
-      "subject",
-      "skills",
-      "level",
-      "language",
-      "product",
-      "program_type",
-      "partner",
-*/
+export interface CourseFilters {
+  key: string;
+  label: string;
+  filters: [];
+}
 
 export interface Course {
   title: string;
@@ -66,11 +60,7 @@ export interface Course {
     name: string;
   }[];
   course_titles: null | string[];
-  skills: {
-    skill: string;
-    category: string;
-    subcategory: string;
-  }[];
+  skills: string[];
   contentful_fields: null | string[];
   product_key: string;
   product_marketing_video_url: null | string;

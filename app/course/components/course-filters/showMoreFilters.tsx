@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Modal, Collapsible, Row, Col, Button, Form } from "@edx/paragon";
-import courseMockFilters from "../../helpers/courseMockFilters";
+import courseMockFilters from "@/app/helpers/courseMockFilters";
 import {
   appliedFiltersState,
   filterModalState,
@@ -10,7 +10,6 @@ import {
 } from "@/app/recoil/atoms/courseFilters";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import FilterCheckbox from "./filterCheckbox";
-import { SelectedFilters } from "@/app/types/courseFilter";
 
 interface ShowMoreFiltersProps {
   selectedCategory: string;
@@ -21,8 +20,7 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
   const setAppliedFilters = useSetRecoilState(appliedFiltersState);
   const [selectedFilters] = useRecoilState(selectedFiltersState);
 
-  useEffect(() => {
-  }, [selectedFilters]);
+  useEffect(() => {}, [selectedFilters]);
 
   const handleClose = () => {
     setShowModal(false);
@@ -33,6 +31,8 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
     setShowModal(false);
     console.log("handleApplyFilters", "handleApplyFilters");
   };
+
+  console.log("courseMockFilters", courseMockFilters);
 
   const handleClearFilters = useResetRecoilState(selectedFiltersState);
 
@@ -52,7 +52,7 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
                     <FilterCheckbox
                       key={index}
                       filterKey={filterCategory.key}
-                      filterValue={filter.label}
+                      filterValue={filter}
                       isApplied={false}
                     ></FilterCheckbox>
                   ))}
