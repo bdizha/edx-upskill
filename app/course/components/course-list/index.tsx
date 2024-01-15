@@ -79,11 +79,12 @@ const CourseList = () => {
         <Col xs={12} sm={6} lg={8} xl={9}>
           <Container className="course-list">
             <Row className="my-3" justify-content="space-between">
-              <Col xs={12} sm={12} lg={4} xl={4}>
+              <Col xs={12} sm={12} lg={7} xl={7}>
                 <h2 className="mb-4">All courses</h2>
               </Col>
-              <Col className="text-right" xs={12} sm={12} lg={8} xl={8}>
+              <Col className="text-right" xs={12} sm={12} lg={5} xl={5}>
                 <Pagination
+                className="pr-6"
                   currentPage={currentPage}
                   paginationLabel="Pagination"
                   pageCount={pageTotal}

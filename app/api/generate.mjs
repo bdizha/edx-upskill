@@ -54,6 +54,7 @@ async function readFiles() {
 
     // Create a filters set out of the course filter attributes
     let filtersData = {};
+
     const filterKeys = [
       "learning_type",
       "availability",
@@ -83,7 +84,13 @@ async function readFiles() {
 
         let courseFilters = [];
         if (filterKey === "skills") {
-          courseFilters = course.skills.map((skill) => skill.skill);
+          courseFilters = course.skills
+            .map((skill) => skill.skill)
+            .filter((item) => {
+              console.log(item + " !== null", item !== null);
+
+              return item !== null;
+            });
         } else if (filterKey === "product") {
           courseFilters = [course[filterKey]];
         } else {

@@ -17,10 +17,12 @@ interface ShowMoreFiltersProps {
 
 const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
   const [showModal, setShowModal] = useRecoilState(filterModalState);
-  const setAppliedFilters = useSetRecoilState(appliedFiltersState);
+  const [appliedFilters, setAppliedFilters] = useRecoilState(appliedFiltersState);
   const [selectedFilters] = useRecoilState(selectedFiltersState);
 
-  useEffect(() => {}, [selectedFilters]);
+  useEffect(() => {
+    console.log("selectedFilters", "selectedFilters");
+  }, [selectedFilters]);
 
   const handleClose = () => {
     setShowModal(false);
@@ -73,9 +75,6 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
       onClose={handleClose}
       renderDefaultCloseButton={false}
       buttons={[
-        <Button variant="tertiary" onClick={handleClearFilters} data-autofocus>
-          Clear all
-        </Button>,
         <Button variant="success" onClick={handleApplyFilters} data-autofocus>
           Apply
         </Button>,
