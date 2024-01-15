@@ -11,6 +11,7 @@ import CourseCurriculum from "../components/course-curriculum";
 import CourseRuns from "../components/course-runs";
 import CoursePaths from "../components/course-paths";
 import CourseHeader from "../components/course-header";
+import CourseInstructors from "../components/course-instructors";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const course: Course | any = courseMockData.find(
@@ -19,12 +20,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   console.log("Course", course);
   console.log("Course :: params.slug", params.slug);
-  console.log("Course :: courseMockData", courseMockData);
 
-  //
+  // Check if course exists
   if (!course) {
-    // alert(course.path);
-    return <h1>Course not found!</h1>;
+    return <Container size="md"><h1>Course not found!</h1></Container>;
   }
 
   return (
@@ -33,6 +32,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       <CourseSnapshot course={course}></CourseSnapshot>
       <CourseRuns course={course}></CourseRuns>
       <CourseCurriculum course={course}></CourseCurriculum>
+      <CourseInstructors course={course}></CourseInstructors>
       <CoursePaths></CoursePaths>
     </>
   );

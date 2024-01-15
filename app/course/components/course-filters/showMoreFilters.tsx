@@ -17,8 +17,10 @@ interface ShowMoreFiltersProps {
 
 const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
   const [showModal, setShowModal] = useRecoilState(filterModalState);
-  const [appliedFilters, setAppliedFilters] = useRecoilState(appliedFiltersState);
-  const [selectedFilters] = useRecoilState(selectedFiltersState);
+  const [appliedFilters, setAppliedFilters] =
+    useRecoilState(appliedFiltersState);
+  const [selectedFilters, setSelectedFilters] =
+    useRecoilState(selectedFiltersState);
 
   useEffect(() => {
     console.log("selectedFilters", "selectedFilters");
@@ -36,7 +38,28 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
 
   console.log("courseMockFilters", courseMockFilters);
 
-  const handleClearFilters = useResetRecoilState(selectedFiltersState);
+  const handleClearFilters = () => {
+    let filters: any = {};
+
+    Object.keys(appliedFilters).forEach((filterKey) => {
+      filters[filterKey] = [];
+    });
+
+    setAppliedFilters({
+      ...appliedFilters,
+      ...filters,
+    });
+
+    filters = {};
+    Object.keys(selectedFilters).forEach((filterKey) => {
+      filters[filterKey] = [];
+    });
+
+    setSelectedFilters({
+      ...selectedFilters,
+      ...filters,
+    });
+  };
 
   const showFilters = () =>
     courseMockFilters.map((filterCategory, index) => {
@@ -75,6 +98,9 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
       onClose={handleClose}
       renderDefaultCloseButton={false}
       buttons={[
+        <Button variant="tertiary" onClick={handleClearFilters} data-autofocus>
+          Clear all
+        </Button>,
         <Button variant="success" onClick={handleApplyFilters} data-autofocus>
           Apply
         </Button>,

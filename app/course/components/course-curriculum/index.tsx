@@ -12,11 +12,11 @@ const CourseCurriculum = ({course}: CourseCurriculumProps) => {
         <Row className="my-3">
           <Col xs={12} sm={12} lg={12} xl={12}>
             <h1>About this course</h1>
-            <p>{course.secondary_description}</p>
+            <p dangerouslySetInnerHTML={{ __html: course.secondary_description }}></p>
           </Col>
           <Col xs={12} sm={12} lg={12} xl={12}>
             <h1>Course Curriculum</h1>
-            <p>{course.tertiary_description}</p>
+            <p dangerouslySetInnerHTML={{ __html: course.tertiary_description }}></p>
           </Col>
         </Row>
       </Container>
