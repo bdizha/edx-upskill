@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // @ts-ignore
 import { Container, Row, Col, Image, Icon } from "@edx/paragon";
 // @ts-ignore
-import courseMockData from "../helpers/courseMockData";
+import courseMockData from "../../helpers/courseMockData";
 import Course from "../../types/course";
 import CourseSnapshot from "../components/course-snapshot";
 import CourseHeader from "../components/course-header";

@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-import courseMockFilters from "../../course/helpers/courseMockFilters";
+import courseMockFilters from "@/app/helpers/courseMockFilters";
 import { SelectedFilters } from "@/app/types/courseFilter";
 
 export const courseFiltersState = atom({

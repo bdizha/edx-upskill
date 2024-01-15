@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Modal, Collapsible, Row, Col, Button, Form } from "@edx/paragon";
-import courseMockFilters from "../../helpers/courseMockFilters";
+import courseMockFilters from "@/app/helpers/courseMockFilters";
 import {
   appliedFiltersState,
   filterModalState,
@@ -10,7 +10,6 @@ import {
 } from "@/app/recoil/atoms/courseFilters";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import FilterCheckbox from "./filterCheckbox";
-import { SelectedFilters } from "@/app/types/courseFilter";
 
 interface ShowMoreFiltersProps {
   selectedCategory: string;
@@ -18,10 +17,11 @@ interface ShowMoreFiltersProps {
 
 const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
   const [showModal, setShowModal] = useRecoilState(filterModalState);
-  const setAppliedFilters = useSetRecoilState(appliedFiltersState);
+  const [appliedFilters, setAppliedFilters] = useRecoilState(appliedFiltersState);
   const [selectedFilters] = useRecoilState(selectedFiltersState);
 
   useEffect(() => {
+    console.log("selectedFilters", "selectedFilters");
   }, [selectedFilters]);
 
   const handleClose = () => {
@@ -33,6 +33,8 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
     setShowModal(false);
     console.log("handleApplyFilters", "handleApplyFilters");
   };
+
+  console.log("courseMockFilters", courseMockFilters);
 
   const handleClearFilters = useResetRecoilState(selectedFiltersState);
 
@@ -52,7 +54,7 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
                     <FilterCheckbox
                       key={index}
                       filterKey={filterCategory.key}
-                      filterValue={filter.label}
+                      filterValue={filter}
                       isApplied={false}
                     ></FilterCheckbox>
                   ))}
@@ -73,9 +75,6 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
       onClose={handleClose}
       renderDefaultCloseButton={false}
       buttons={[
-        <Button variant="tertiary" onClick={handleClearFilters} data-autofocus>
-          Clear all
-        </Button>,
         <Button variant="success" onClick={handleApplyFilters} data-autofocus>
           Apply
         </Button>,

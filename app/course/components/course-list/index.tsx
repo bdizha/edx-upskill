@@ -2,62 +2,73 @@
 
 import React, { useEffect, useState } from "react";
 // @ts-ignore
-import { Container, Row, Col, Form } from "@edx/paragon";
+import { Container, Row, Col, Pagination } from "@edx/paragon";
 import CourseCard from "../course-card/index";
 import CourseFilters from "../course-filters";
 import { useRecoilValue } from "recoil";
 import { appliedFiltersState } from "@/app/recoil/atoms/courseFilters";
+import courses from "@/app/api/courses.json";
 import { Course } from "@/app/types/course";
-import courses from "@/app/api/courses.json"
 
 interface CourseFiltersProps {
   [key: string]: string;
 }
 
 const CourseList = () => {
+  const coursesPerPage = 24;
+
   const [courseList, setCourseList] = useState(courses);
+  const [pageTotal, setPageTotal] = useState(
+    Math.ceil(courses.length / coursesPerPage)
+  );
+  const [currentPage, setCurrentPage] = useState(1);
   const appliedFilters = useRecoilValue(appliedFiltersState);
 
-
-  console.log("CourseList :: courseList", courseList);
-
   useEffect(() => {
-    const filteredCourses = courseList?.filter((course) => {
+    const filteredCourses = courses?.filter((course) => {
       let showCourse = true;
 
-      const courseFilters: CourseFiltersProps = course.filters;
-
-      // console.log("CourseList :: course", course.title);
-      // console.log("CourseList :: courseFilters", courseFilters);
-
       Object.keys(appliedFilters).forEach((filterKey) => {
-        // console.log(
-        //   "CourseList :: appliedFilters[filterKey].length > 0",
-        //   appliedFilters[filterKey].length > 0
-        // );
-        // console.log(
-        //   "CourseList :: !appliedFilters[filterKey].includes(courseFilters[filterKey])",
-        //   !appliedFilters[filterKey].includes(courseFilters[filterKey])
-        // );
+        // @ts-ignore
+        const courseFilters: [] = course[filterKey];
+
+        console.log(
+          "CourseList :: course[filterKey]",
+          // @ts-ignore
+          course[filterKey]
+        );
 
         if (
           appliedFilters[filterKey]?.length > 0 &&
-          !appliedFilters[filterKey]?.includes(courseFilters[filterKey])
+          courseFilters.length > 0 &&
+          !appliedFilters[filterKey].some((filter) =>
+            // @ts-ignore
+            courseFilters.includes(filter)
+          )
         ) {
           showCourse = false;
         }
       });
 
-      // console.log("CourseList :: showCourse", showCourse);
-
       return showCourse;
     });
 
+    setPageTotal(Math.ceil(filteredCourses.length / coursesPerPage));
 
-    console.log("CourseList :: appliedFilters", appliedFilters);
+    // Calculate the start and end indices for the current page
+    const startIndex = (currentPage - 1) * coursesPerPage;
+    const endIndex = startIndex + coursesPerPage;
 
-    setCourseList(filteredCourses);
-  }, [appliedFilters]);
+    // Use the slice method to get the courses for the current page
+    const coursesForCurrentPage = filteredCourses.slice(startIndex, endIndex);
+
+    setCourseList(coursesForCurrentPage);
+  }, [appliedFilters, currentPage]);
+
+  const handlePageSelect = (page: any) => {
+    console.log("handlePageSelect selected", page);
+    setCurrentPage(page);
+  };
 
   return (
     <Container className="mt-6" size="xl">
@@ -67,13 +78,28 @@ const CourseList = () => {
         </Col>
         <Col xs={12} sm={6} lg={8} xl={9}>
           <Container className="course-list">
-            <h2 className="mb-4">All courses</h2>
+            <Row className="my-3" justify-content="space-between">
+              <Col xs={12} sm={12} lg={7} xl={7}>
+                <h2 className="mb-4">All courses</h2>
+              </Col>
+              <Col className="text-right" xs={12} sm={12} lg={5} xl={5}>
+                <Pagination
+                className="pr-6"
+                  currentPage={currentPage}
+                  paginationLabel="Pagination"
+                  pageCount={pageTotal}
+                  variant="secondary"
+                  onPageSelect={handlePageSelect}
+                />
+              </Col>
+            </Row>
             <Row>
-              {courseList?.length > 0 && courseList.map((course, index) => (
-                <Col xs={12} sm={6} md={4} key={index}>
-                  <CourseCard course={course} uuid={course.uuid}></CourseCard>
-                </Col>
-              ))}
+              {courseList?.length > 0 &&
+                courseList.map((course, index) => (
+                  <Col xs={12} sm={6} md={4} key={index}>
+                    <CourseCard course={course} uuid={course.uuid}></CourseCard>
+                  </Col>
+                ))}
             </Row>
           </Container>
         </Col>
