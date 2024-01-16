@@ -23,7 +23,7 @@ const CourseCard = ({ course, uuid }: Props) => {
           <h4 className="h4 course-name">
             <Truncate lines={2}>{course.title}</Truncate>
           </h4>
-          <p className="small">{course.partner[0]}</p>
+          <p className="small"><Truncate lines={2}>{course.partner[0]}</Truncate></p>
           <div className="small">
             {/* <Icon src={Add} style={{ height: '24px', width: '24px' }} />3 months */}
           </div>

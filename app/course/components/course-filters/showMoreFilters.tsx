@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 // @ts-ignore
 import { Modal, Collapsible, Row, Col, Button, Form } from "@edx/paragon";
-import courseMockFilters from "../../helpers/courseMockFilters";
+import courseMockFilters from "@/app/helpers/courseMockFilters";
 import {
   appliedFiltersState,
   filterModalState,
@@ -10,7 +10,6 @@ import {
 } from "@/app/recoil/atoms/courseFilters";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import FilterCheckbox from "./filterCheckbox";
-import { SelectedFilters } from "@/app/types/courseFilter";
 
 interface ShowMoreFiltersProps {
   selectedCategory: string;
@@ -18,10 +17,13 @@ interface ShowMoreFiltersProps {
 
 const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
   const [showModal, setShowModal] = useRecoilState(filterModalState);
-  const setAppliedFilters = useSetRecoilState(appliedFiltersState);
-  const [selectedFilters] = useRecoilState(selectedFiltersState);
+  const [appliedFilters, setAppliedFilters] =
+    useRecoilState(appliedFiltersState);
+  const [selectedFilters, setSelectedFilters] =
+    useRecoilState(selectedFiltersState);
 
   useEffect(() => {
+    console.log("selectedFilters", "selectedFilters");
   }, [selectedFilters]);
 
   const handleClose = () => {
@@ -34,7 +36,30 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
     console.log("handleApplyFilters", "handleApplyFilters");
   };
 
-  const handleClearFilters = useResetRecoilState(selectedFiltersState);
+  console.log("courseMockFilters", courseMockFilters);
+
+  const handleClearFilters = () => {
+    let filters: any = {};
+
+    Object.keys(appliedFilters).forEach((filterKey) => {
+      filters[filterKey] = [];
+    });
+
+    setAppliedFilters({
+      ...appliedFilters,
+      ...filters,
+    });
+
+    filters = {};
+    Object.keys(selectedFilters).forEach((filterKey) => {
+      filters[filterKey] = [];
+    });
+
+    setSelectedFilters({
+      ...selectedFilters,
+      ...filters,
+    });
+  };
 
   const showFilters = () =>
     courseMockFilters.map((filterCategory, index) => {
@@ -52,7 +77,7 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
                     <FilterCheckbox
                       key={index}
                       filterKey={filterCategory.key}
-                      filterValue={filter.label}
+                      filterValue={filter}
                       isApplied={false}
                     ></FilterCheckbox>
                   ))}

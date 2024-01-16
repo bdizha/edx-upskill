@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import CoursePaths from ".";
+import React from "react";
 
 const setup = () => {
   const { container } = render(<CoursePaths />);

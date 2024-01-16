@@ -1,3 +1,5 @@
+
+// @ts-ignore
 import { Card, Avatar, Truncate } from "@edx/paragon";
 
 interface InstructorCardProps {
