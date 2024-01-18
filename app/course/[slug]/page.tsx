@@ -12,6 +12,7 @@ import CourseRuns from "../components/course-runs";
 import CoursePaths from "../components/course-paths";
 import CourseHeader from "../components/course-header";
 import CourseInstructors from "../components/course-instructors";
+import CaptureForm from "@/app/components/capture-form";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const course: Course | any = courseMockData.find(
@@ -29,6 +30,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   return (
     <>
       <CourseHeader course={course}></CourseHeader>
+      <CaptureForm ></CaptureForm >
       <CourseSnapshot course={course}></CourseSnapshot>
       <CourseRuns course={course}></CourseRuns>
       <CourseCurriculum course={course}></CourseCurriculum>

@@ -42,3 +42,14 @@
 .course-image {
     max-width: 100%;
 }
+.rotate-45::before {
+    background: #475b65;
+    content: "";
+    height: 100%;
+    position: absolute;
+    right: -60px;
+    top: 0;
+    transform: skewX(-12deg);
+    transform-origin: top;
+    width: 150%;
+}
