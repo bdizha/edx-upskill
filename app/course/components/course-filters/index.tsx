@@ -2,14 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 // @ts-ignore
-import { Row, Col, Button } from "@edx/paragon";
+import { Row, Col, Button, CheckBoxGroup } from "@edx/paragon";
 import courseMockFilters from "@/app/helpers/courseMockFilters";
 import ShowMoreFilters from "./showMoreFilters";
-import {
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   appliedFiltersState,
   courseFiltersState,
@@ -34,7 +30,6 @@ const CourseFilters = ({}: CourseFiltersProps) => {
   const [showAllFilters, setShowAllFilters] = useState<ShowAllFilters>({});
 
   const handleShowMore = (categoryKey: string) => {
-
     // set the selected filters to the applied ones
     setSelectedFilters(appliedFilters);
 
@@ -70,14 +65,16 @@ const CourseFilters = ({}: CourseFiltersProps) => {
                 <h4>{filterCategory.label}</h4>
                 <Row>
                   <Col xl={12}>
-                    {visibleFilters.map((filter, index) => (
-                      <FilterCheckbox
-                        key={index}
-                        filterKey={filterCategory.key}
-                        filterValue={filter}
-                        isApplied={true}
-                      ></FilterCheckbox>
-                    ))}
+                    <CheckBoxGroup>
+                      {visibleFilters.map((filter, index) => (
+                        <FilterCheckbox
+                          key={index}
+                          filterKey={filterCategory.key}
+                          filterValue={filter}
+                          isApplied={true}
+                        ></FilterCheckbox>
+                      ))}
+                    </CheckBoxGroup>
                   </Col>
                   {filterCategory.filters.length > maxVisibleFilters && (
                     <Col xl={12}>

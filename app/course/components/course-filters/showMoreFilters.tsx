@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 // @ts-ignore
-import { Modal, Collapsible, Row, Col, Button, Form } from "@edx/paragon";
+import { Modal, Collapsible, Row, Col, Button, CheckBoxGroup } from "@edx/paragon";
 import courseMockFilters from "@/app/helpers/courseMockFilters";
 import {
   appliedFiltersState,
@@ -73,14 +73,16 @@ const ShowMoreFilters = ({ selectedCategory }: ShowMoreFiltersProps) => {
             >
               <Row>
                 <Col xl={12}>
-                  {filterCategory.filters.map((filter, index) => (
-                    <FilterCheckbox
-                      key={index}
-                      filterKey={filterCategory.key}
-                      filterValue={filter}
-                      isApplied={false}
-                    ></FilterCheckbox>
-                  ))}
+                  <CheckBoxGroup>
+                    {filterCategory.filters.map((filter, index) => (
+                      <FilterCheckbox
+                        key={index}
+                        filterKey={filterCategory.key}
+                        filterValue={filter}
+                        isApplied={false}
+                      ></FilterCheckbox>
+                    ))}
+                  </CheckBoxGroup>
                 </Col>
               </Row>
             </Collapsible>
