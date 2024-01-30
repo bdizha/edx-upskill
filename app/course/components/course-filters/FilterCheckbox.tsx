@@ -75,16 +75,14 @@ const FilterCheckbox = ({
   };
 
   return (
-    <CheckBoxGroup>
-      <Form.Checkbox
-        checked={isChecked}
-        name={filterKey}
-        value={filterValue}
-        onChange={handleChange}
-      >
-        {filterValue}
-      </Form.Checkbox>
-    </CheckBoxGroup>
+    <Form.Checkbox
+      checked={isChecked}
+      name={filterKey}
+      value={filterValue}
+      onChange={handleChange}
+    >
+      {filterValue}
+    </Form.Checkbox>
   );
 };
 
