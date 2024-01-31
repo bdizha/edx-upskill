@@ -23,7 +23,11 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   // Check if course exists
   if (!course) {
-    return <Container size="md"><h1>Course not found!</h1></Container>;
+    return (
+      <Container size="md">
+        <h1>Course not found!</h1>
+      </Container>
+    );
   }
 
   return (
